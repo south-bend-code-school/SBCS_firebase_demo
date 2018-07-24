@@ -27,15 +27,11 @@
       email : email,
     };
 
-    console.log(project);
-
     var newProjectKey = firebase.database().ref().child('Project').push().key;
     var updates = {};
     updates['/Project/' + newProjectKey] = project;
 
-    return firebase.database().ref().update(updates).then(function(){
-      window.location.replace('./index.html');
-    });
+    return firebase.database().ref().update(updates);
   }
 
   function loadData(){
