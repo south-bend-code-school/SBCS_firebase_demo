@@ -13,6 +13,7 @@
   function init(){
     firebase.initializeApp(config);
     $('#submitButton').click(writeData);
+    loadData();
   }
 
   function writeData() {
@@ -33,8 +34,17 @@
     updates['/Project/' + newProjectKey] = project;
 
     return firebase.database().ref().update(updates).then(function(){
-//       window.location.replace('./index.html');
+      window.location.replace('./index.html');
     });
+  }
+
+  function loadData(){
+    firebase.database().ref('/Project/').on('value', function(snapshot){
+      var users = snapshot.val();
+      $.each(users, function(key, value){
+        $('#email-list').append("<p>"+value.email+"</p>")
+      })
+    })
   }
 
 })();
