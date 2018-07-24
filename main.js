@@ -32,13 +32,9 @@
     var updates = {};
     updates['/Project/' + newProjectKey] = project;
 
-    firebase.storage().ref().child('images/projects/' + newProjectKey).put($('#photo')[0].files[0]).then(function(snapshot){
-        return firebase.database().ref().update(updates).then(function(){
-          window.location.replace('./index.html');
-        });
-      }).catch(function(error) {
-        console.log(error.message);
-      });
+    return firebase.database().ref().update(updates).then(function(){
+      window.location.replace('./index.html');
+    });
   }
 
 })();
