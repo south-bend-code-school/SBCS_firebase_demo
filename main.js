@@ -33,7 +33,7 @@
     updates['/Project/' + newProjectKey] = project;
 
     return firebase.database().ref().update(updates).then(function(){
-      window.location.replace('./index.html');
+//       window.location.replace('./index.html');
     });
   }
 
